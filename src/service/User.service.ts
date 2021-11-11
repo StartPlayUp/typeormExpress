@@ -1,5 +1,5 @@
 import { validate } from 'class-validator';
-import { returnApi } from '../constants/api';
+import { returnApi } from '../types/InterfaceService';
 import { User } from './../entity/User';
 
 

@@ -105,15 +105,15 @@ app.use('/api', routes)
 createConnection().then(async connection => {
 
     app.listen(5000, () => console.log('Server up at http://localhost:5000'))
-
-    const user = new User()
-    user.nickname = "JSC"
-    user.email = "gbs04087@gmail.com"
-    user.role = 'admin'
-    user.id = 'adminasdf'
-
-    await user.save()
-    console.log("create success")
+    /* 
+        const user = new User()
+        user.nickname = "JSC"
+        user.email = "gbs04087@gmail.com"
+        user.role = 'admin'
+        user.id = 'adminasdf'
+    
+        await user.save()
+        console.log("create success") */
 
 }).catch(error => console.log(error));
 

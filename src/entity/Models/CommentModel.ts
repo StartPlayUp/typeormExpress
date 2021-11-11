@@ -4,7 +4,8 @@ import { Model } from "./Model";
 
 export abstract class CommentModel extends Model {
     @Column({
-        nullable: false
+        nullable: false,
+        type: "longtext"
     })
     content!: string;
 
