@@ -1,0 +1,31 @@
+{
+   "name": "new-typeorm-project",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "@types/express": "^4.17.13",
+      "@types/node": "^8.0.29",
+      "@types/uuid": "^8.3.1",
+      "nodemon": "^2.0.14",
+      "ts-node": "^10.4.0",
+      "tsconfig-paths": "^3.11.0",
+      "typescript": "^4.4.4",
+      "uuid": "^8.3.2"
+   },
+   "dependencies": {
+      "class-validator": "^0.13.1",
+      "express": "^4.17.1",
+      "mysql": "^2.14.1",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.38"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts",
+      "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+      "dev": "nodemon --exec ts-node src/index.ts",
+      "build": "tsc",
+      "migration": "yarn typeorm migration:run",
+      "migration:create": "yarn typeorm migration:create -n",
+      "migration:revert": "yarn typeorm migration:revert"
+   }
+}
