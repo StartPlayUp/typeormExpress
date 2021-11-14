@@ -1,9 +1,9 @@
 import { validate } from 'class-validator';
-import { returnApi } from '../types/InterfaceService';
+import { returnComment } from '../types/InterfaceReturn';
 import { User } from './../entity/User';
 
 
-const createComment = async (): Promise<returnApi> => {
+const createComment = async (): Promise<returnComment> => {
     try {
         return {
             success: true,
@@ -20,7 +20,7 @@ const deleteComment = async () => {
 
 }
 
-const findComments = async (): Promise<returnApi> => {
+const findComments = async (): Promise<returnComment> => {
     try {
 
         return {

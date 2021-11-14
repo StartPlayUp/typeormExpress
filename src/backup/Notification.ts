@@ -1,5 +1,5 @@
 import { Entity, Column, ManyToOne } from "typeorm";
-import { Model } from "./Models/Model";
+import { Model } from "../entity/Models/Model";
 
 @Entity()
 export class Notification extends Model {

@@ -1,11 +1,12 @@
-import { Column } from "typeorm";
+import { Post } from './../Post';
+import { Column, ManyToOne } from "typeorm";
 import { Model } from "./Model";
 
 
 export abstract class CommentModel extends Model {
     @Column({
         nullable: false,
-        type: "longtext"
+        type: 'longtext'
     })
     content!: string;
 
@@ -21,14 +22,4 @@ export abstract class CommentModel extends Model {
         default: 0
     })
     parentComment: number;
-
-    @Column({
-        default: 0
-    })
-    parentPost: number;
-
-    constructor(model?: Partial<any>) {
-        super()
-        Object.assign(this, model)
-    }
 }

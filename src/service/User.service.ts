@@ -1,25 +1,13 @@
 import { validate } from 'class-validator';
-import { returnApi } from '../types/InterfaceService';
+import { returnUser } from '../types/InterfaceReturn';
+import { ICreateUser } from '../types/service/InterfaceUser';
 import { User } from './../entity/User';
 
 
-interface createUserInterface {
-    id: string,
-    nickname: string,
-    email: string,
-    password: string,
-    role?: roleEnum | undefined
-}
-
-enum roleEnum {
-    'user',
-    'admin',
-    'superadmin'
-}
 
 
 
-const createUser = async (userData: createUserInterface): Promise<returnApi> => {
+const createUser = async (userData: ICreateUser): Promise<returnUser> => {
     const { id, nickname, email, password } = userData;
     try {
         const user = User.create({ id, nickname, email, password, role: 'user' });
