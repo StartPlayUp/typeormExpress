@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createUser } from '../service/User.service';
+import { createUser } from '../../service/User.service';
 
 const register = async (req: Request, res: Response) => {
     const { id, nickname, email, password } = req.body;

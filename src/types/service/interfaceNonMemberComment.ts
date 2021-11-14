@@ -1,6 +1,7 @@
-import { interfaceMemberModel } from "./Model/interfaceMemberModel";
+import { interfaceCommentModel } from "./Model/interfaceCommentModel";
 
-interface INonMemberComment extends interfaceMemberModel {
+interface INonMemberComment extends interfaceCommentModel {
+    anonymouseId: string,
     password: string
 }
 

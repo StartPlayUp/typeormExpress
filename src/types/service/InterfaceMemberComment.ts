@@ -1,7 +1,7 @@
-import { interfaceMemberModel } from "./Model/interfaceMemberModel";
+import { interfaceCommentModel } from "./Model/interfaceCommentModel";
 
-interface IMemberCommentInterface extends interfaceMemberModel {
-    userIndex: number
+interface IMemberComment extends interfaceCommentModel {
+    userUuid: string
 }
 
-export { IMemberCommentInterface }
+export { IMemberComment }

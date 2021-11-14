@@ -1,13 +1,12 @@
-
+import { role } from '../enum/index'
 interface IPost {
     title: string,
     content: string,
-    permision: string,
-    // delete: boolean,
-    // useComment: string,
-    // ipAddress: string
-    // slug: string,
-    // user: number
+    ipAddress: string
+    userUuid: string,
+    permision?: role,
+    useComment?: boolean,
+    delete?: boolean,
 }
 
 export { IPost }

@@ -5,7 +5,7 @@ export abstract class Model extends BaseEntity {
     @PrimaryGeneratedColumn()
     index!: number;
 
-    @Column({ type: 'uuid' })
+    @Column({ unique: true, type: 'uuid' })
     uuid!: string
 
     @CreateDateColumn()

@@ -5,6 +5,9 @@ import { Post } from './Post';
 @Entity()
 export class NonMemberComment extends CommentModel {
     @Column()
+    anonymouseId!: string;
+
+    @Column()
     password!: string;
 
     @ManyToOne(() => Post, post => post.nonMemberComments)

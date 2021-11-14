@@ -8,7 +8,7 @@ import { User } from './User'
 
 @Entity()
 export class Post extends Model {
-    @Column({ unique: true })
+    @Column()
     @Length(1, 255)
     title: string;
 
@@ -26,16 +26,14 @@ export class Post extends Model {
 
     @Column({
         nullable: false,
-        select: false
+        default: false
     })
-    @IsBoolean()
     delete: boolean;
 
     @Column({
         nullable: false,
-        select: true
+        default: true
     })
-    @IsBoolean()
     useComment: boolean;
 
     @Column()
@@ -43,9 +41,8 @@ export class Post extends Model {
     ipAddress: string;
 
     @Column({
-        nullable: false
+        nullable: true
     })
-    @Length(1, 255)
     slug: string;
 
     @AfterInsert()

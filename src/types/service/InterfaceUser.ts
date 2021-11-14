@@ -6,7 +6,7 @@ interface ICreateUser {
     nickname: string,
     email: string,
     password: string,
-    role?: role | undefined
+    role?: role
 }
 
 export { ICreateUser }
