@@ -5,7 +5,8 @@ import { Post } from './../entity/Post';
 import { validate } from 'class-validator';
 import { returnComment } from '../types/InterfaceReturn';
 import { IMemberComment } from '../types/service/InterfaceMemberComment';
-import { INonMemberComment } from '../types/service/interfaceNonMemberComment';
+import { INonMemberComment } from '../types/service/interfaceMemberComment';
+import { getRepository, Connection } from 'typeorm';
 
 
 const createMemberComment = async (commentData: IMemberComment): Promise<returnComment> => {
@@ -35,29 +36,6 @@ const createMemberComment = async (commentData: IMemberComment): Promise<returnC
         }
     }
 }
-
-const deleteComment = async () => {
-
-}
-
-const findComments = async (): Promise<returnComment> => {
-    try {
-
-        return {
-            success: true,
-        }
-    } catch (err) {
-        return {
-            success: false,
-            error: "Something went wrong"
-        }
-    }
-}
-
-
-
-
-
 
 const createNonMemberComment = async (commentData: INonMemberComment): Promise<returnComment> => {
     const {
@@ -89,7 +67,37 @@ const createNonMemberComment = async (commentData: INonMemberComment): Promise<r
 }
 
 
+const deleteComment = async () => {
+
+}
+
+const getCommentsFromPostUuid = async ({ postUuid }: any): Promise<returnComment> => {
+    try {
+        const post = await Post.findOneOrFail({ uuid: postUuid })
+        console.log(post.index)
+        const memberComments = await MemberComment.find({
+            // select: ["uuid", "updatedAt", "content", "parentComment", "ipAddress"],
+            // relations: ["post"],
+            where: {
+                // postIndex: post.index
+                // post: {
+                //     uuid: postUuid,
+                // },
+            },
+        })
+        const nonMemberComments = await NonMemberComment.find()
+        return {
+            success: true,
+            memberComments,
+            nonMemberComments
+        }
+    } catch (err) {
+        return {
+            success: false,
+            error: "Something went wrong"
+        }
+    }
+}
 
 
-
-export { createMemberComment, createNonMemberComment, deleteComment, findComments }
+export { createMemberComment, createNonMemberComment, deleteComment, getCommentsFromPostUuid }
