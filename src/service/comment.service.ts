@@ -68,14 +68,15 @@ const createNonMemberComment = async (commentData: INonMemberComment): Promise<r
         password,
         parentComment,
     } = commentData;
+    console.log(commentData)
     try {
         const post = await Post.findOneOrFail({ uuid: postUuid })
 
-        const memberComment = NonMemberComment.create({ content, ipAddress, anonymouseId, password, post });
+        const nonMemberComment = NonMemberComment.create({ content, ipAddress, anonymouseId, password, post });
         // 추가해야 검사해줌
-        const errors = await validate(post)
-        if (errors.length > 0) throw errors
-        await memberComment.save()
+        // const errors = await validate(post)
+        // if (errors.length > 0) throw errors
+        await nonMemberComment.save()
         return {
             success: true,
         }

@@ -21,7 +21,6 @@ export class Post extends Model {
         enum: ['user', 'admin', 'superadmin'],
         default: 'user'
     })
-    @IsEnum(['user', 'admin', 'superadmin'])
     permision: string;
 
     @Column({

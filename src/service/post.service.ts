@@ -20,6 +20,7 @@ const createPost = async (postData: IPost): Promise<returnPost> => {
         const post = Post.create({ title, content, ipAddress, user });
         // 추가해야 검사해줌
         const errors = await validate(post)
+        console.log(errors)
         if (errors.length > 0) throw errors
         await post.save()
         return {

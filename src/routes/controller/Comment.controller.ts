@@ -23,6 +23,7 @@ const sendMemberComment = async (req: Request, res: Response) => {
 }
 
 const sendNonMemberComment = async (req: Request, res: Response) => {
+    await console.log("여기냐?")
     const {
         content,
         ipAddress,
@@ -30,6 +31,7 @@ const sendNonMemberComment = async (req: Request, res: Response) => {
         anonymouseId,
         password,
     } = req.body;
+    console.log("여기냐?")
     const result = await createNonMemberComment({
         content,
         ipAddress,
@@ -41,6 +43,7 @@ const sendNonMemberComment = async (req: Request, res: Response) => {
         return res.status(201).json(result);
     }
     else {
+        console.log("여기냐?")
         return res.status(500).json(result)
     }
 }
