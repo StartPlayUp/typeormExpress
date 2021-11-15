@@ -38,12 +38,11 @@ export class Comment extends Model {
     })
     isMember: boolean;
 
+    @ManyToOne(_ => Comment, comment => comment.childComments)
+    parentComment!: Comment
 
     @OneToMany(_ => Comment, comment => comment.parentComment)
     childComments: Comment[]
-
-    @ManyToOne(_ => Comment, comment => comment.childComments)
-    parentComment!: Comment
 
     @ManyToOne(() => User, user => user.comments)
     user: User;

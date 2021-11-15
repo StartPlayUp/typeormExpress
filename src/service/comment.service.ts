@@ -28,6 +28,7 @@ const createMemberComment = async (commentData: IMemberComment): Promise<returnC
                 ipAddress,
                 post: postFromUuid,
                 user: userFromUuid,
+                user_nickname: userFromUuid,
                 isMember: true,
                 parentComment: commentFromUuid
             });
@@ -39,6 +40,7 @@ const createMemberComment = async (commentData: IMemberComment): Promise<returnC
                 isMember: true,
                 post: postFromUuid,
                 user: userFromUuid,
+                user_nickname: userFromUuid,
             });
         }
 
@@ -113,33 +115,65 @@ const deleteComment = async () => {
 
 const getCommentsFromPostUuid = async ({ postUuid }: any): Promise<returnComment> => {
     try {
-        // const comment = await Comment.find({
-        //     select: ["uuid", "updatedAt", "content", "ipAddress"],
-        //     relations: ["post"],
-        //     where: {
-        //         post: {
-        //             uuid: postUuid
-        //         }
-        //     }
-        // })
         const comment = await getRepository(Comment)
             .createQueryBuilder("comment")
             .where('comment.parentComment IS NULL')
             .andWhere("post.uuid = :uuid", { uuid: postUuid })
-            // .select(["comment.uuid", "comment.updatedAt", "comment.content", "comment.ipAddress", "comment.isMember"])
             .leftJoin('comment.post', 'post')
-            .leftJoin('comment.user', 'user')
-            .addSelect('user.id')
-            // .leftJoinAndSelect('comment.childComments', 'parentComment')
-            .leftJoin('comment.childComments.user', 'user')
-
-            // .leftJoin('comment.childComments.user', 'user')
+            .leftJoinAndSelect('comment.childComments', ' parentComment')
             .printSql()
             .getRawMany();
 
+        const temp: any = {}
+        comment.map((o) => {
+            if (o.comment_deleted) {
+                o.comment_content = "삭제된 글 입니다."
+            }
+
+            if (temp.hasOwnProperty(o.comment_index)) {
+                if (o.parentComment_index) {
+                    temp[o.comment_index]["childComments"].push({
+                        index: o.parentComment_index,
+                        uuid: o.parentComment_uuid,
+                        updatedAt: o.parentComment_updatedAt,
+                        content: o.parentComment_content,
+                        ipAddress: o.parentComment_ipAddress,
+                        annonymouseId: o.parentComment_anonymouseId,
+                        isMember: o.parentComment_isMember,
+                        user_id: o.parentComment_user_nickname,
+
+                    })
+                }
+            }
+            else {
+                const childComments = []
+                if (o.parentComment_index) {
+                    childComments.push({
+                        index: o.parentComment_index,
+                        uuid: o.parentComment_uuid,
+                        updatedAt: o.parentComment_updatedAt,
+                        content: o.parentComment_content,
+                        ipAddress: o.parentComment_ipAddress,
+                        annonymouseId: o.parentComment_anonymouseId,
+                        isMember: o.parentComment_isMember,
+                        user_id: o.parentComment_user_nickname,
+                    })
+                }
+                temp[o.comment_index] = {
+                    uuid: o.comment_uuid,
+                    updatedAt: o.comment_updatedAt,
+                    content: o.comment_content,
+                    ipAddress: o.comment_ipAddress,
+                    user_id: o.comment_user_nickname,
+                    childComments
+                }
+
+            }
+        })
+
         return {
             success: true,
-            comment
+            comment: temp
         }
     } catch (err) {
         return {
@@ -148,14 +182,5 @@ const getCommentsFromPostUuid = async ({ postUuid }: any): Promise<returnComment
         }
     }
 }
-
-//  select: ["uuid", "updatedAt", "content", "parentComment", "ipAddress"],
-//  relations: ["parentComment"],
-//  where: {
-//      postIndex: post.index
-//      post: {
-//          uuid: postUuid,
-//      },
-//  },
 
 export { createMemberComment, createNonMemberComment, deleteComment, getCommentsFromPostUuid }
