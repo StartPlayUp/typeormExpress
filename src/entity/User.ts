@@ -1,4 +1,4 @@
-import { MemberComment } from './MemberComment';
+import { Comment } from './Comment';
 import { IsEmail, IsEnum, Length } from "class-validator";
 import { Entity, Column, OneToMany } from "typeorm";
 import { Model } from './Models/Model'
@@ -32,8 +32,12 @@ export class User extends Model {
     @IsEnum(['user', 'admin', 'superadmin'])
     role: string;
 
-    @OneToMany(() => MemberComment, memberComment => memberComment.user)
-    memberComments: MemberComment[]
+    @OneToMany(() => Comment, comment => comment.user)
+    comments: Comment[]
+
+    @OneToMany(() => Comment, comment => comment.user_nickname)
+    commentsForNickname: Comment[]
+
 
     @OneToMany(() => Post, post => post.user)
     posts: Post[]

@@ -11,8 +11,7 @@ interface returnPost extends returnApi {
 }
 
 interface returnComment extends returnApi {
-    memberComments?: any,
-    nonMemberComments?: any,
+    comment?: any,
     error?: string
 }
 

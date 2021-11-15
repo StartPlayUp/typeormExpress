@@ -3,7 +3,7 @@ interface interfaceCommentModel {
     ipAddress: string
     postUuid: string,
     delete?: boolean,
-    parentComment?: number,
+    parentUuid?: string,
 }
 
 export { interfaceCommentModel }

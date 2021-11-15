@@ -11,12 +11,14 @@ const sendMemberComment = async (req: Request, res: Response) => {
         ipAddress,
         postUuid,
         userUuid,
+        parentUuid,
     } = req.body;
     const result = await createMemberComment({
         content,
         ipAddress,
         postUuid,
         userUuid,
+        parentUuid,
     });
     if (result.success) {
         return res.status(201).json(result);
@@ -31,6 +33,7 @@ const sendNonMemberComment = async (req: Request, res: Response) => {
         content,
         ipAddress,
         postUuid,
+        parentUuid,
         anonymouseId,
         password,
     } = req.body;
@@ -39,7 +42,8 @@ const sendNonMemberComment = async (req: Request, res: Response) => {
         ipAddress,
         postUuid,
         anonymouseId,
-        password
+        password,
+        parentUuid
     });
     if (result.success) {
         return res.status(201).json(result);
@@ -52,7 +56,6 @@ const sendNonMemberComment = async (req: Request, res: Response) => {
 
 const getComments = async (req: Request, res: Response) => {
     const postUuid = req.query.postUuid;
-    console.log("asdf : ", postUuid)
     const result = await getCommentsFromPostUuid({ postUuid });
     if (result.success) {
         return res.status(201).json(result);

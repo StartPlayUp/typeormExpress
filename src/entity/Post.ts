@@ -1,7 +1,6 @@
 import { IsEnum, IsIP, IsBoolean, MinLength, Length } from "class-validator";
 import { Entity, Column, ManyToMany, ManyToOne, OneToMany, AfterInsert } from "typeorm";
-import { MemberComment } from "./MemberComment";
-import { NonMemberComment } from "./NonMemberComment";
+import { Comment } from "./Comment";
 
 import { Model } from './Models/Model'
 import { User } from './User'
@@ -52,10 +51,7 @@ export class Post extends Model {
     @ManyToOne(() => User, post => post.posts)
     user: User
 
-    @OneToMany(() => MemberComment, memberComment => memberComment.post)
-    memberComments: MemberComment[]
-
-    @OneToMany(() => NonMemberComment, nonMemberComment => nonMemberComment.post)
-    nonMemberComments: NonMemberComment[]
+    @OneToMany(() => Comment, comment => comment.post)
+    comments: Comment[]
 
 }

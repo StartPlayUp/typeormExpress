@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, BeforeInsert } from "typeorm";
+import { Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, BeforeInsert } from "typeorm";
 import { v4 as uuid } from 'uuid'
 
 export abstract class Model extends BaseEntity {
@@ -26,7 +26,7 @@ export abstract class Model extends BaseEntity {
 
 
     // 값 반환할때 막는법
-    toJSON() {
-        return { ...this, id: undefined }
-    }
+    // toJSON() {
+    //     return { ...this, index: undefined }
+    // }
 }

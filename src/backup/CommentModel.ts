@@ -1,6 +1,6 @@
-import { Post } from './../Post';
+import { Post } from '../entity/Post';
 import { Column, ManyToOne } from "typeorm";
-import { Model } from "./Model";
+import { Model } from "../entity/Models/Model";
 
 
 export abstract class CommentModel extends Model {
