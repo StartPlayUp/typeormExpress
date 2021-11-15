@@ -9,4 +9,11 @@ interface IPost {
     delete?: boolean,
 }
 
-export { IPost }
+
+interface ILikeIt {
+    postUuid: string,
+    userUuid: string,
+    likeIt: boolean
+}
+
+export { IPost, ILikeIt }

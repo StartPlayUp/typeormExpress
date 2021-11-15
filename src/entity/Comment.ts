@@ -41,18 +41,29 @@ export class Comment extends Model {
     @ManyToOne(_ => Comment, comment => comment.childComments)
     parentComment!: Comment
 
-    @OneToMany(_ => Comment, comment => comment.parentComment)
+    @OneToMany(_ => Comment, comment => comment.parentComment, {
+        primary: true
+    })
     childComments: Comment[]
 
-    @ManyToOne(() => User, user => user.comments)
+    @ManyToOne(() => User, user => user.comments, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     user: User;
 
-    @ManyToOne(() => User, user => user.commentsForNickname)
+    @ManyToOne(() => User, user => user.commentsForNickname, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     @JoinColumn({ name: 'user_nickname', referencedColumnName: 'nickname' })
     user_nickname: User;
 
 
-    @ManyToOne(() => Post, post => post.comments)
+    @ManyToOne(() => Post, post => post.comments, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     post: Post;
 
 

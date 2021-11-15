@@ -1,3 +1,4 @@
+import { Thumb } from './Thumb';
 import { Comment } from './Comment';
 import { IsEmail, IsEnum, Length } from "class-validator";
 import { Entity, Column, OneToMany } from "typeorm";
@@ -38,7 +39,9 @@ export class User extends Model {
     @OneToMany(() => Comment, comment => comment.user_nickname)
     commentsForNickname: Comment[]
 
-
     @OneToMany(() => Post, post => post.user)
     posts: Post[]
+
+    @OneToMany(() => Thumb, thumb => thumb.user)
+    thumbs: Thumb[]
 }

@@ -4,8 +4,7 @@ import { Post } from './../entity/Post';
 import { validate } from 'class-validator';
 import { returnComment } from '../types/InterfaceReturn';
 import { IMemberComment, INonMemberComment } from '../types/service/InterfaceComment';
-// import { INonMemberComment } from '../types/service/interfaceMemberComment';
-import { getRepository, Connection, IsNull } from 'typeorm';
+import { getRepository } from 'typeorm';
 
 
 const createMemberComment = async (commentData: IMemberComment): Promise<returnComment> => {

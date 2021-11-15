@@ -9,10 +9,13 @@ interface returnUser extends returnApi {
 interface returnPost extends returnApi {
     error?: string
 }
+interface returnPostLikeIt extends returnPost {
+    message?: string
+}
 
 interface returnComment extends returnApi {
     comment?: any,
     error?: string
 }
 
-export { returnUser, returnPost, returnComment }
+export { returnUser, returnPost, returnComment, returnPostLikeIt }
