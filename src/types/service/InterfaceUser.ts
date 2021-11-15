@@ -9,4 +9,8 @@ interface ICreateUser {
     role?: role
 }
 
-export { ICreateUser }
+
+interface IReadUser {
+    nickname: string
+}
+export { ICreateUser, IReadUser }

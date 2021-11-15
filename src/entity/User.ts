@@ -44,4 +44,9 @@ export class User extends Model {
 
     @OneToMany(() => Thumb, thumb => thumb.user)
     thumbs: Thumb[]
+
+
+    toJSON() {
+        return { ...this, id: undefined, index: undefined, password: undefined }
+    }
 }

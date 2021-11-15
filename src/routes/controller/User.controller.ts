@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createUser } from '../../service/User.service';
+import { createUser, readUser } from '../../service/User.service';
 
 const register = async (req: Request, res: Response) => {
     const { id, nickname, email, password } = req.body;
@@ -12,4 +12,28 @@ const register = async (req: Request, res: Response) => {
     }
 }
 
-export { register }
+
+const deleteUser = async (req: Request, res: Response) => {
+    const nickname = req.query.nickname as string;
+    const result = await readUser({ nickname });
+    if (result.success) {
+        return res.status(201).json(result);
+    }
+    else {
+        return res.status(500).json(result)
+    }
+}
+
+
+const getUser = async (req: Request, res: Response) => {
+    const nickname = req.query.nickname as string;
+    const result = await readUser({ nickname });
+    if (result.success) {
+        return res.status(201).json(result);
+    }
+    else {
+        return res.status(500).json(result)
+    }
+}
+
+export { register, getUser, deleteUser }

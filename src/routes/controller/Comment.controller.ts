@@ -55,7 +55,7 @@ const sendNonMemberComment = async (req: Request, res: Response) => {
 
 
 const getComments = async (req: Request, res: Response) => {
-    const postUuid = req.query.postUuid;
+    const postUuid = req.query.postUuid as string;
     const result = await getCommentsFromPostUuid({ postUuid });
     if (result.success) {
         return res.status(201).json(result);

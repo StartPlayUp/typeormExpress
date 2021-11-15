@@ -1,21 +1,27 @@
+import { User } from './../entity/User';
+
 interface returnApi {
     success: boolean,
+    error?: string
 }
 
 interface returnUser extends returnApi {
-    error?: string
+    user?: User
 }
 
 interface returnPost extends returnApi {
-    error?: string
 }
 interface returnPostLikeIt extends returnPost {
     message?: string
 }
 
-interface returnComment extends returnApi {
-    comment?: any,
-    error?: string
+interface returnGetPostLikeIt extends returnPost {
+    likeItCount?: number
+    countAll?: number
 }
 
-export { returnUser, returnPost, returnComment, returnPostLikeIt }
+interface returnComment extends returnApi {
+    comment?: any,
+}
+
+export { returnUser, returnPost, returnComment, returnPostLikeIt, returnGetPostLikeIt }
