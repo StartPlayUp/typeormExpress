@@ -5,7 +5,6 @@ import { validate } from 'class-validator';
 import { returnGetPostLikeIt, returnPost, returnPostLikeIt } from '../types/InterfaceReturn';
 import { IPost, ILikeIt } from '../types/service/InterfacePost';
 import { Post } from './../entity/Post';
-import { print } from 'util';
 
 
 

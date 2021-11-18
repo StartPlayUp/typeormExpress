@@ -6,7 +6,7 @@ interface returnApi {
 }
 
 interface returnUser extends returnApi {
-    user?: User
+    user?: any
 }
 
 interface returnPost extends returnApi {
@@ -24,4 +24,4 @@ interface returnComment extends returnApi {
     comment?: any,
 }
 
-export { returnUser, returnPost, returnComment, returnPostLikeIt, returnGetPostLikeIt }
+export { returnApi, returnUser, returnPost, returnComment, returnPostLikeIt, returnGetPostLikeIt }

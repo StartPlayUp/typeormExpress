@@ -6,6 +6,8 @@ interface ICreateUser {
     nickname: string,
     email: string,
     password: string,
+    emailToken: string,
+    isVerified: boolean,
     role?: role
 }
 
@@ -13,4 +15,10 @@ interface ICreateUser {
 interface IReadUser {
     nickname: string
 }
-export { ICreateUser, IReadUser }
+
+interface ILoginUser {
+    id: string,
+    password: string
+}
+
+export { ICreateUser, IReadUser, ILoginUser }

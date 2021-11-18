@@ -2,13 +2,17 @@ import "reflect-metadata";
 import { createConnection } from "typeorm";
 import { User } from "./entity/User";
 import { Post } from './entity/Post';
-import routes from "./routes/index"
+import routes from "./routes/index";
+import cookieParser from "cookie-parser";
+import morgan from 'morgan';
 import express, { Request, Response } from 'express'
 import { validate } from "class-validator";
 const app = express()
+app.use(cookieParser())
 app.use(express.json())
-
+app.use(morgan())
 app.use('/api', routes)
+
 
 // // CREATE
 // app.post('/users', async (req: Request, res: Response) => {

@@ -21,8 +21,7 @@ export class User extends Model {
     @IsEmail()
     email: string;
 
-    @Column({ default: "asdfqwer12" })
-    @Length(0, 20)
+    @Column()
     password: string;
 
     @Column({
@@ -32,6 +31,12 @@ export class User extends Model {
     })
     @IsEnum(['user', 'admin', 'superadmin'])
     role: string;
+
+    @Column({ nullable: true })
+    emailToken: string
+
+    @Column()
+    isVerified: boolean
 
     @OneToMany(() => Comment, comment => comment.user)
     comments: Comment[]
@@ -47,6 +52,12 @@ export class User extends Model {
 
 
     toJSON() {
-        return { ...this, id: undefined, index: undefined, password: undefined }
+        return {
+            ...this,
+            id: undefined,
+            index: undefined,
+            emailToken: undefined,
+            isVerified: undefined
+        }
     }
 }
